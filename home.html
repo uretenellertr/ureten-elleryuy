@@ -7,6 +7,7 @@
   <title>Giriş • Üreten Eller</title>
   <meta name="description" content="Üreten Eller'e giriş yapın veya kayıt olun. Google ile giriş, e‑posta doğrulama, şifre sıfırlama." />
   <link rel="icon" href="/assets/icons/favicon-32x32.png" />
+  <link rel="stylesheet" href="/style.css?v=1" />
   <style>
     :root{
       --bg1:#0b1220; --bg2:#0a0f1c; --ink:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee;
@@ -36,40 +37,12 @@
     /* Ticker */
     .ticker{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:.8rem auto 0}
     .tick{font-weight:800;border:1px solid var(--brd);border-radius:999px;padding:.28rem .6rem;transition:transform .2s ease, filter .2s ease}
-    .tick:hover{transform:translateY(-1px);filter:brightness(1.1)}
 
     /* CTA */
     .cta{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:.35rem}
     .btn{padding:.6rem .9rem;border:1px solid var(--brd);border-radius:12px;background:#0b1220;color:var(--ink);font-weight:800;cursor:pointer;white-space:nowrap}
     .btn.primary{background:linear-gradient(180deg,var(--c1),#128473);border-color:#0e766e}
     .btn.ghost{background:transparent}
-    .btn.premium{background:linear-gradient(180deg,var(--c6),#a16207);border-color:#a16207}
-    .btn.profile{background:linear-gradient(180deg,#16a34a,#065f46);border-color:#0e5135}
-    .btn.logout{background:linear-gradient(180deg,#ef4444,#7f1d1d);border-color:#7f1d1d}
-    .pmField{display:flex;align-items:center;gap:.5rem;margin:.4rem 0}
-    .pmField code{background:#0a0f1c;border:1px solid var(--brd);padding:.35rem .5rem;border-radius:8px}
-    .btn.copy{padding:.35rem .55rem;border-radius:8px}
-    .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:#0b1220;border:1px solid var(--brd);color:#e5e7eb;padding:.5rem .8rem;border-radius:10px;box-shadow:0 10px 30px #0008;z-index:1100}
-    .note{color:#cbd5e1;font-size:.9rem}
-    .top .actions{display:flex;gap:.5rem;align-items:center;margin-right:.5rem}
-
-    /* Bottom nav bar */
-    .bottomBar{position:fixed;left:0;right:0;bottom:0;background:#0b1220;border-top:1px solid var(--brd);display:flex;justify-content:space-around;gap:.5rem;padding:.4rem env(safe-area-inset-right) calc(.4rem + env(safe-area-inset-bottom)) env(safe-area-inset-left);z-index:1002}
-    .bottomBar .bItem{flex:1;display:flex;flex-direction:column;align-items:center;gap:.15rem;text-decoration:none;color:var(--ink);padding:.35rem 0;font-weight:700}
-    .bottomBar .bItem[aria-current="page"]{color:#fff}
-    .bottomBar .ico{font-size:1.15rem;line-height:1}
-    .bottomBar .txt{font-size:.78rem;color:#cbd5e1}
-
-    body{padding-bottom:84px}
-
-    /* Live chat bubble */
-    .fabChat{position:fixed;right:14px;bottom:72px;z-index:1003;border:1px solid var(--brd);background:linear-gradient(180deg,var(--c7),#0f766e);color:#fff;border-radius:999px;padding:.65rem .85rem;font-weight:900;box-shadow:0 10px 30px #0008;cursor:pointer;display:flex;align-items:center;gap:.5rem}
-    .fabChat .dot{width:10px;height:10px;border-radius:999px;background:#22c55e;box-shadow:0 0 0 2px #052e2b}
-    .chatPanel{position:fixed;right:14px;bottom:130px;width:min(360px,92vw);max-height:60vh;background:linear-gradient(180deg,#0c1426,#0b1220);border:1px solid var(--brd);border-radius:14px;overflow:hidden;box-shadow:0 20px 60px #000a;z-index:1004}
-    .chatHead{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border-bottom:1px solid var(--brd);font-weight:900}
-    .chatBody{padding:.6rem .8rem;color:#e5e7eb;max-height:38vh;overflow:auto}
-    .chatFoot{border-top:1px solid var(--brd);padding:.5rem}
-    .chatFoot input{width:100%;background:#0a0f1c;border:1px solid var(--brd);border-radius:10px;padding:.55rem .6rem;color:var(--ink)}
 
     /* Content grid */
     .grid{display:grid;gap:1rem;margin:1.25rem auto;grid-template-columns:1fr}
@@ -94,18 +67,6 @@
     .thumb{aspect-ratio:1.1/1;background:#0f172a;background-size:cover;background-position:center}
     .meta{padding:.5rem .6rem}
     .mini{color:#9ca3af}
-
-    /* Showcase (Vitrin) */
-    .showcaseWrap{max-width:1200px;margin:1rem auto 0;padding:0 1rem}
-    .showcaseHead{display:flex;align-items:center;justify-content:center;margin:.25rem 0 .6rem;gap:.5rem}
-    .showcaseHead h2{margin:0;font-size:1.05rem;letter-spacing:.2px}
-    .showcaseGrid{display:grid;gap:.85rem;grid-template-columns:repeat(3,minmax(0,1fr))}
-    @media(min-width:1100px){.showcaseGrid{grid-template-columns:repeat(5,1fr)}}
-    .scItem{border:1px solid var(--brd);border-radius:14px;background:#0b1220;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 0 0 1px #a16207aa,0 0 18px #a16207aa}
-    .scItem .thumb{aspect-ratio:1/1;background:#0f172a;background-size:cover;background-position:center}
-    .scItem .meta{padding:.5rem .6rem}
-    .scItem .badgePrem{position:absolute;left:8px;top:8px;border:1px solid #a16207;background:linear-gradient(180deg,var(--c6),#a16207);color:#000;font-weight:900;border-radius:999px;padding:.15rem .45rem;font-size:.72rem}
-
 
     /* Auth box */
     .auth{border:1px solid var(--brd);border-radius:16px;background:linear-gradient(180deg,#0c1426,#0b1220);padding:1rem;position:relative}
@@ -137,33 +98,25 @@
     @media(max-width:520px){
       .cards{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
       .listGrid{grid-template-columns:1fr}
-      /* Mobile: hover yokken vurguyu görünür tut */
       .card{box-shadow:0 0 0 1px var(--glow, #22d3ee),0 0 18px var(--glow, #22d3ee)}
       .card:hover{transform:none}
       .card:active{transform:scale(.98)}
     }
-    /* Güvence için tekrar (bazı eski tarayıcılar media query dışını override edebiliyor) */
     .listGrid{grid-template-columns:1fr}
     .card{box-shadow:0 0 0 1px var(--glow, #22d3ee),0 0 18px var(--glow, #22d3ee)}
     .card:hover{transform:none}
     .card:active{transform:scale(.98)}
 
-    /* Görsel olarak görünmeyen ama anchor hedefi olan bölümler */
-    .anchor-target{position:relative;display:block;height:1px;overflow:hidden}
+    /* Anchor hedefini devre dışı bırak (scroll olmasın) */
+    #profile{position:fixed; top:-100vh; height:0; overflow:hidden}
   </style>
   <link rel="preload" as="image" href="/assets/img/logo.png" />
 </head>
 <body>
   <div class="wrap">
-    <div class="top">
-      <div class="logo"><img src="/assets/icons/logo.svg" alt="logo" /><span>Üreten Eller</span></div>
+    <div class="top"><div class="logo"><img src="/assets/icons/logo.svg" alt="logo" /><span>Üreten Eller</span></div>
       <div class="spacer"></div>
-      <div class="actions">
-        <a class="btn small premium" href="#" id="btnPremium">Premium</a>
-        <a class="btn small profile" href="/home.html#profile" id="btnProfile">👤 Profil</a>
-        <a class="btn small primary" href="/ilanver.html" id="btnPost">İlan Ver</a>
-        <button class="btn small logout" id="btnLogout">Çıkış</button>
-      </div>
+      <div class="badge">🎉 <b>1000+ mutlu kullanıcı</b></div>
       <div class="lang" style="margin-left:.6rem"><select id="langSel" aria-label="Dil">
         <option value="tr">Türkçe</option>
         <option value="en">English</option>
@@ -174,50 +127,32 @@
 
     <div class="hero">
       <div class="heroLogo"><img src="/assets/img/logo.png" alt="Üreten Eller" /></div>
-
-      <!-- Premium Modal -->
-      <div class="auth" id="premiumModal" aria-hidden="true" style="display:none">
-        <button class="close" id="closePremium" aria-label="Kapat">✕</button>
-        <div class="tabs" style="margin-bottom:.2rem"><div class="tab" aria-selected="true" style="pointer-events:none">⭐ Premium Üyelik</div></div>
-        <div class="pmField"><b>Tutar:</b> <code>1999 TL</code> <button class="btn copy" data-copy="1999 TL">Kopyala</button></div>
-        <div class="pmField"><b>Alıcı:</b> <code>Nejla Karatal</code> <button class="btn copy" data-copy="Nejla Karatal">Kopyala</button></div>
-        <div class="pmField"><b>Papara / IBAN:</b> <code id="ibanCode">TR590082900009491868461105</code> <button class="btn copy" data-copy="TR590082900009491868461105">Kopyala</button></div>
-        <p class="note" style="margin-top:.6rem">Ödeme sonrası lütfen <b>dekontla birlikte</b> sağ alttaki <b>Canlı Destek</b> üzerinden bizimle iletişime geçiniz.</p>
-        <div class="row" style="margin-top:.6rem">
-          <button class="btn primary" id="openChatFromPremium">Canlı Desteği Aç</button>
-        </div>
+      <div class="cta">
+        <button class="btn primary" id="openSignup">Ücretsiz Kaydol</button>
+        <button class="btn ghost" id="openLogin">Zaten Üyeyim (Giriş)</button>
       </div>
       <h1 id="welcome">Üreten Ellere Hoş Geldiniz</h1>
       <div class="tag" id="tagline">Aracısız alışveriş</div>
       <div class="ticker" id="ticker"></div>
-
-      <!-- VİTRİN (PREMIUM) ALTINA EKLENDİ -->
-      <section class="showcaseWrap" aria-labelledby="scTitle">
-        <div class="showcaseHead"><h2 id="scTitle">Vitrin (Premium)</h2></div>
-        <div class="showcaseGrid" id="showcaseGrid"></div>
-      </section>
     </div>
 
-    <!-- 50 İLANLIK ALAN -->
     <section class="listWrap" aria-labelledby="listTitle">
-      <div class="listHead"><h2 id="listTitle">İlanlar</h2></div>
+      <div class="listHead"><h2 id="listTitle" style="margin:0;font-size:clamp(18px,2.4vw,26px)">Son İlanlar</h2><span class="mini" id="listCount">(50)</span></div>
       <div class="listGrid" id="listGrid"></div>
+      <div class="mini" style="text-align:center;margin-top:.35rem">Her 30 dakikada bir vitrin yenilenir.<b>Not:</b> "Sahte/Örnek" olarak işaretlenen ilanlar, moderasyon için gösterilen örnek görsellerdir.</div>
     </section>
 
     <div class="grid" id="grid">
-      <!-- LEFT: categories -->
       <div>
         <div class="cards" id="catGrid"></div>
       </div>
 
-      <!-- RIGHT: auth box -->
       <div class="auth" id="authBox" aria-hidden="true" style="display:none"><button class="close" id="closeAuth" aria-label="Kapat">✕</button>
         <div class="tabs" role="tablist">
           <button class="tab" id="tabLogin" role="tab" aria-selected="true">Giriş Yap</button>
           <button class="tab" id="tabSignup" role="tab" aria-selected="false">Kayıt Ol</button>
         </div>
 
-        <!-- LOGIN -->
         <form id="loginForm" novalidate>
           <div class="field"><label for="lemail">E‑posta</label><input id="lemail" type="email" required /></div>
           <div class="field"><label for="lpass">Şifre</label><div class="input"><input id="lpass" type="password" required /><button type="button" class="btn" style="padding:.35rem .6rem" data-toggle="lpass">Göster</button></div></div>
@@ -231,7 +166,6 @@
           <div id="lmsg" class="muted" style="margin-top:.4rem"></div>
         </form>
 
-        <!-- SIGNUP -->
         <form id="signupForm" style="display:none" novalidate>
           <div class="field"><label for="suser">Kullanıcı Adı</label><input id="suser" type="text" required /></div>
           <div class="field"><label for="sname">İsim</label><input id="sname" type="text" required /></div>
@@ -257,10 +191,8 @@
     </div>
   </div>
 
-  <!-- Görünmez anchor hedefleri (boş içerik, sadece #profile/#messages/#notifications çalışsın) -->
-  <div id="profile" class="anchor-target" aria-hidden="true"></div>
-  <div id="messages" class="anchor-target" aria-hidden="true"></div>
-  <div id="notifications" class="anchor-target" aria-hidden="true"></div>
+  <!-- Anchor hedefi; scroll'u CSS iptal ediyor -->
+  <div id="profile" aria-hidden="true"></div>
 
   <!-- FOOTER / LEGAL -->
   <div id="backdrop" class="backdrop" style="display:none"></div>
@@ -296,30 +228,14 @@
     </div>
   </footer>
 
-  <!-- Bottom fixed bar -->
-  <nav class="bottomBar" role="navigation" aria-label="Alt menü">
-    <a class="bItem" href="/docs/home.html" aria-current="page"><span class="ico">🏠</span><span class="txt" id="navHomeTxt">Ana Sayfa</span></a>
-    <a class="bItem" href="/docs/home.html#messages"><span class="ico">💬</span><span class="txt" id="navMsgTxt">Mesajlar</span></a>
-    <a class="bItem" href="/docs/home.html#notifications"><span class="ico">🔔</span><span class="txt" id="navNotifTxt">Bildirimler</span></a>
-  </nav>
-
-  <!-- Live chat bubble + panel -->
-  <button class="fabChat" id="fabChat" aria-label="Canlı Destek"><span class="dot" aria-hidden="true"></span> 💬</button>
-  <div class="chatPanel" id="chatPanel" hidden>
-    <div class="chatHead">Canlı Destek <button id="chatClose" class="btn small">✕</button></div>
-    <div class="chatBody">Merhaba! Nasıl yardımcı olabilirim?</div>
-    <div class="chatFoot"><input type="text" placeholder="Mesaj yaz..." /></div>
-  </div>
-  <div id="toast" class="toast" hidden>Kopyalandı</div>
   <script>
-  const HOME = '/home.html';
+  const HOME = "/home.html";
   const $=(s)=>document.querySelector(s);
   const $$=(s)=>Array.from(document.querySelectorAll(s));
   const COLORS=["#10b981","#f59e0b","#8b5cf6","#06b6d4","#ef4444","#eab308","#14b8a6","#f97316","#a855f7","#3b82f6"];
 
-  // === Language packs (UI + categories + slogans + legal) ===
   const TEXT={
-    tr:{signup:"Ücretsiz Kaydol",loginBtn:"Zaten Üyeyim (Giriş)",welcome:"Üreten Ellere Hoş Geldiniz",tagline:"Aracısız alışveriş",tabLogin:"Giriş Yap",tabSignup:"Kayıt Ol",forgot:"Şifremi Unuttum",gLogin:"🔐 Google ile Giriş",gCont:"⚡ Google ile Devam",loginSubmit:"Giriş Yap",signupSubmit:"Kayıt Ol",topPremium:"Premium",topProfile:"Profil",topPost:"İlan Ver",topLogout:"Çıkış",navHome:"Ana Sayfa",navMessages:"Mesajlar",navNotifs:"Bildirimler",
+    tr:{signup:"Ücretsiz Kaydol",loginBtn:"Zaten Üyeyim (Giriş)",welcome:"Üreten Ellere Hoş Geldiniz",tagline:"Aracısız alışveriş",tabLogin:"Giriş Yap",tabSignup:"Kayıt Ol",forgot:"Şifremi Unuttum",gLogin:"🔐 Google ile Giriş",gCont:"⚡ Google ile Devam",loginSubmit:"Giriş Yap",signupSubmit:"Kayıt Ol",
       cats:{
         food:{t:"🍲 Yemekler",s:["Ev yemekleri","Börek-çörek","Çorba","Zeytinyağlı","Pilav-makarna","Et-tavuk","Kahvaltılık","Meze","Dondurulmuş","Çocuk öğünleri","Diyet/vegan/gf"]},
         cake:{t:"🎂 Pasta & Tatlı",s:["Yaş pasta","Kek-cupcake","Kurabiye","Şerbetli","Sütlü","Cheesecake","Diyet tatlı","Çikolata/şekerleme","Doğum günü setleri"]},
@@ -340,7 +256,7 @@
         "El emeğine değer!","Aracısız alışveriş","Yerel üreticiye destek","Ev yapımı lezzetler","Kişiye özel hediyeler","Glutensiz & vegan var","Sıcacık örgüler","Doğal sabun & kozmetik","Yöresel kışlıklar","Taze reçeller","Özenle el işi","Emekle gelen kalite","Her ilmekte sevgi","Evden eve güven","Doğum günü setleri","Şık takılar","Makrome ile şıklık","Kokularla huzur","Bebekler için güvenli","Geleneksel tarifler","Katkısız tatlar","Komşundan sofrana","Ustaların buluşması","Lezzet ve tasarım","Sevgiyle üretildi"
       ],
       legal:["İletişim / Impressum","Gizlilik Politikası","KVKK Aydınlatma","Çerez Politikası","Kullanım Şartları","Mesafeli Satış Sözleşmesi","Ön Bilgilendirme Formu","Teslimat & İade","Topluluk Kuralları","Yasaklı Ürünler","Tüm Yasal Metinler","Punycode Alan Adı",".com.tr"]},
-    en:{signup:"Sign up free",loginBtn:"I already have an account",welcome:"Welcome to Üreten Eller",tagline:"Direct, no middleman",tabLogin:"Log In",tabSignup:"Sign Up",forgot:"Forgot password",gLogin:"🔐 Continue with Google",gCont:"⚡ Continue with Google",loginSubmit:"Log In",signupSubmit:"Sign Up",topPremium:"Premium",topProfile:"Profile",topPost:"Post Ad",topLogout:"Logout",navHome:"Home",navMessages:"Messages",navNotifs:"Notifications",
+    en:{signup:"Sign up free",loginBtn:"I already have an account",welcome:"Welcome to Üreten Eller",tagline:"Direct, no middleman",tabLogin:"Log In",tabSignup:"Sign Up",forgot:"Forgot password",gLogin:"🔐 Continue with Google",gCont:"⚡ Continue with Google",loginSubmit:"Log In",signupSubmit:"Sign Up",
       cats:{
         food:{t:"🍲 Meals",s:["Home meals","Börek & pastry","Soup","Olive oil dishes","Rice & pasta","Meat & chicken","Breakfast","Meze","Frozen","Kids meals","Diet/vegan/gf"]},
         cake:{t:"🎂 Cakes & Desserts",s:["Birthday cake","Cake & cupcake","Cookies","Syrupy","Milk desserts","Cheesecake","Diet dessert","Chocolate/candy","Birthday sets"]},
@@ -361,7 +277,7 @@
         "Valuing handicraft","Direct trade","Support local makers","Homemade goodness","Personalized gifts","Gluten‑free & vegan","Cozy knits","Natural soap & cosmetics","Traditional pantry","Fresh jams","Carefully handmade","Quality with effort","Love in every stitch","Home‑to‑home trust","Birthday sets","Elegant jewelry","Style with macramé","Peaceful scents","Safe for babies","Traditional recipes","Additive‑free taste","From neighbor to table","Masters united","Taste & design","Made with love"
       ],
       legal:["Contact / Impressum","Privacy Policy","KVKK Notice","Cookie Policy","Terms of Use","Distance Sales Agreement","Pre‑Information Form","Delivery & Returns","Community Rules","Prohibited Products","All Legal Texts","Punycode Domain",".com.tr"]},
-    de:{signup:"Kostenlos registrieren",loginBtn:"Ich habe schon ein Konto",welcome:"Willkommen bei Üreten Eller",tagline:"Direkt & ohne Vermittler",tabLogin:"Anmelden",tabSignup:"Registrieren",forgot:"Passwort vergessen",gLogin:"🔐 Mit Google fortfahren",gCont:"⚡ Mit Google fortfahren",loginSubmit:"Anmelden",signupSubmit:"Registrieren",topPremium:"Premium",topProfile:"Profil",topPost:"Anzeige aufgeben",topLogout:"Abmelden",navHome:"Startseite",navMessages:"Nachrichten",navNotifs:"Benachrichtigungen",
+    de:{signup:"Kostenlos registrieren",loginBtn:"Ich habe schon ein Konto",welcome:"Willkommen bei Üreten Eller",tagline:"Direkt & ohne Vermittler",tabLogin:"Anmelden",tabSignup:"Registrieren",forgot:"Passwort vergessen",gLogin:"🔐 Mit Google fortfahren",gCont:"⚡ Mit Google fortfahren",loginSubmit:"Anmelden",signupSubmit:"Registrieren",
       cats:{
         food:{t:"🍲 Gerichte",s:["Hausmannskost","Börek & Gebäck","Suppe","Olivenölgerichte","Reis & Pasta","Fleisch & Hähnchen","Frühstück","Meze","Tiefkühl","Kindermahlzeiten","Diät/vegan/gf"]},
         cake:{t:"🎂 Kuchen & Süßes",s:["Torten","Kuchen & Cupcake","Kekse","Sirupgebäck","Milchdesserts","Käsekuchen","Diät-Dessert","Schokolade/Bonbon","Geburtstags-Sets"]},
@@ -382,7 +298,7 @@
         "Wert fürs Handwerk","Direkter Handel","Lokale Macher unterstützen","Hausgemacht","Personalisierte Geschenke","Glutenfrei & vegan","Kuschelige Stricksachen","Naturseife & Kosmetik","Traditioneller Vorrat","Frische Marmeladen","Sorgfältig handgemacht","Qualität durch Mühe","Liebe in jeder Masche","Vertrauen von Haus zu Haus","Geburtstagssets","Eleganter Schmuck","Stil mit Makramee","Beruhigende Düfte","Sicher für Babys","Traditionelle Rezepte","Ohne Zusatzstoffe","Vom Nachbarn auf den Tisch","Meister vereint","Geschmack & Design","Mit Liebe gemacht"
       ],
       legal:["Kontakt / Impressum","Datenschutz","KVKK-Hinweis","Cookie-Richtlinie","Nutzungsbedingungen","Fernabsatzvertrag","Vorabinformation","Lieferung & Rückgabe","Community-Regeln","Verbotene Produkte","Alle Rechtstexte","Punycode-Domain",".com.tr"]},
-    ar:{signup:"سجّل مجانًا",loginBtn:"لدي حساب",welcome:"مرحبًا بكم في Üreten Eller",tagline:"بيع وشراء مباشر",tabLogin:"تسجيل الدخول",tabSignup:"إنشاء حساب",forgot:"نسيت كلمة المرور",gLogin:"🔐 المتابعة مع Google",gCont:"⚡ المتابعة مع Google",loginSubmit:"دخول",signupSubmit:"تسجيل",topPremium:"بريميوم",topProfile:"الملف",topPost:"أنشئ إعلانًا",topLogout:"تسجيل الخروج",navHome:"الرئيسية",navMessages:"الرسائل",navNotifs:"الإشعارات",
+    ar:{signup:"سجّل مجانًا",loginBtn:"لدي حساب",welcome:"مرحبًا بكم في Üreten Eller",tagline:"بيع وشراء مباشر",tabLogin:"تسجيل الدخول",tabSignup:"إنشاء حساب",forgot:"نسيت كلمة المرور",gLogin:"🔐 المتابعة مع Google",gCont:"⚡ المتابعة مع Google",loginSubmit:"دخول",signupSubmit:"تسجيل",
       cats:{
         food:{t:"🍲 أطعمة",s:["أكلات منزلية","فطائر وبوريك","شوربة","أطباق بزيت الزيتون","أرز ومعكرونة","لحم ودجاج","فطور","مقبلات","مجمدات","وجبات للأطفال","حمية/نباتي/خالٍ من الغلوتين"]},
         cake:{t:"🎂 كيك وحلويات",s:["كيك طازج","كيك وكب كيك","بسكويت","حلويات شرقية","حلويات بالحليب","تشيزكيك","حلويات للحمية","شوكولاتة/حلويات","مجموعات عيد الميلاد"]},
@@ -411,8 +327,8 @@
 
   function applyLang(){
     const t=TEXT[LANG]||TEXT.tr;
-    const _os=$('#openSignup'); if(_os) _os.textContent=t.signup;
-    const _ol=$('#openLogin'); if(_ol) _ol.textContent=t.loginBtn;
+    $('#openSignup').textContent=t.signup;
+    $('#openLogin').textContent=t.loginBtn;
     $('#welcome').textContent=t.welcome;
     $('#tagline').textContent=t.tagline;
     $('#tabLogin').textContent=t.tabLogin;
@@ -422,13 +338,6 @@
     $('#gSignup').textContent=t.gCont;
     $('#loginSubmit').textContent=t.loginSubmit;
     $('#signupSubmit').textContent=t.signupSubmit;
-    const nh=$('#navHomeTxt'); if(nh) nh.textContent=t.navHome;
-    const nm=$('#navMsgTxt'); if(nm) nm.textContent=t.navMessages;
-    const nn=$('#navNotifTxt'); if(nn) nn.textContent=t.navNotifs;
-    const bp=$('#btnPremium'); if(bp) bp.textContent=t.topPremium;
-    const bpr=$('#btnProfile'); if(bpr) bpr.innerHTML='👤 '+t.topProfile;
-    const bpo=$('#btnPost'); if(bpo) bpo.textContent=t.topPost;
-    const blo=$('#btnLogout'); if(blo) blo.textContent=t.topLogout;
   }
 
   function renderCats(){
@@ -444,8 +353,7 @@
     });
   }
 
-  // Kategori kartları: renkleri otomatik döndür (3 sn) ve tıklayınca bir sonrakine geç
-  function startCardGlow(intervalMs=3000){
+  function startCardGlow(intervalMs=5000){
     const cards = Array.from(document.querySelectorAll('#catGrid .card'));
     if(!cards.length) return;
     let tick = 0;
@@ -465,12 +373,11 @@
     cards.forEach(card=>{ card.addEventListener('click', ()=>{ tick = (tick + 1) % COLORS.length; paint(); }, { passive:true }); });
   }
 
-  // === Colorful, 25-slogan ticker that changes every 5s ===
   function renderSlogans(){
     const t=TEXT[LANG]||TEXT.tr; const ticker=$('#ticker'); if(!ticker) return; ticker.innerHTML='';
     const arr=(t.slogans||TEXT.tr.slogans).slice(0,25);
     const isMobile = window.matchMedia('(max-width: 520px)').matches;
-    const SLOT = isMobile ? 2 : 5; // mobilde 2, masaüstünde 5
+    const SLOT = isMobile ? 2 : 5;
     for(let i=0;i<SLOT;i++){ const s=document.createElement('span'); s.className='tick'; ticker.appendChild(s); }
     let start=0, hue=0;
     function paint(){
@@ -491,13 +398,7 @@
     }
   }
 
-  // === Listings: sahte/örnek ilanlar kaldırıldı ===
   const LISTINGS=[];
-
-  // === Vitrin (Premium) ===
-  const SHOWCASE=[]; // buraya premium ilanlar gelecek (id, t, price, ago, img)
-
-
   function renderListings(){
     const grid=$('#listGrid'); if(!grid) return; grid.innerHTML='';
     LISTINGS.forEach(function(x,idx){
@@ -510,22 +411,7 @@
         '</div>';
       grid.appendChild(a);
     });
-    const lc=$('#listCount'); if(lc) lc.textContent='('+LISTINGS.length+')';
-  }
-
-  function renderShowcase(){
-    const grid=$('#showcaseGrid'); if(!grid) return; grid.innerHTML='';
-    SHOWCASE.forEach(function(x,idx){
-      const a=document.createElement('a'); a.href='/ilan/'+x.id; a.className='scItem'; a.style.order=String(9999-idx);
-      const bg = x.img ? "background-image:url('"+x.img+"')" : '';
-      a.innerHTML='<span class="badgePrem">⭐ Premium</span>'+
-        '<div class="thumb" style="'+bg+'"></div>'+
-        '<div class="meta">'+
-          '<div style="font-weight:800">'+x.t+'</div>'+
-          '<div class="mini" style="display:flex;gap:.5rem;margin-top:.2rem"><span>'+x.price+'</span> • <span>'+x.ago+'</span></div>'+
-        '</div>';
-      grid.appendChild(a);
-    });
+    $('#listCount').textContent='('+LISTINGS.length+')';
   }
 
   function startListingRotation(){
@@ -539,7 +425,6 @@
 
   function initLangSelect(){ const sel=$('#langSel'); if(!sel) return; sel.value=LANG; sel.onchange=()=>{ LANG=sel.value; localStorage.setItem('ue_lang',LANG); setDir(); applyLang(); renderCats(); startCardGlow(); renderSlogans(); renderLegal(); }; }
 
-  // === Auth panel ===
   function bindAuthPanel(){
     const grid=$('#grid'); const box=$('#authBox'); const bd=$('#backdrop');
     const tabLogin=$('#tabLogin'); const tabSignup=$('#tabSignup');
@@ -547,16 +432,13 @@
     function sel(tab){ const login=tab==='login'; tabLogin.setAttribute('aria-selected',login); tabSignup.setAttribute('aria-selected',!login); loginForm.style.display=login?'block':'none'; signupForm.style.display=login?'none':'block'; }
     function open(which){ if(bd) bd.style.display='block'; box.style.display='block'; box.setAttribute('aria-hidden','false'); box.classList.add('center'); grid.classList.remove('two'); sel(which); }
     function close(){ box.style.display='none'; box.classList.remove('center'); box.setAttribute('aria-hidden','true'); if(bd) bd.style.display='none'; }
-    const openSignupBtn=$('#openSignup'); if(openSignupBtn) openSignupBtn.onclick=()=>open('signup');
-    const openLoginBtn=$('#openLogin'); if(openLoginBtn) openLoginBtn.onclick=()=>open('login');
+    $('#openSignup').onclick=()=>open('signup');
+    $('#openLogin').onclick=()=>open('login');
     tabLogin.onclick=()=>sel('login');
     tabSignup.onclick=()=>sel('signup');
     $('#closeAuth').onclick=close; if(bd){ bd.onclick=close; }
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && box.classList.contains('center')) close(); });
-    // password eye toggle
     document.addEventListener('click',(e)=>{ const b=e.target.closest('[data-toggle]'); if(!b) return; const id=b.getAttribute('data-toggle'); const el=document.getElementById(id); if(!el) return; const isPwd=el.type==='password'; el.type=isPwd?'text':'password'; b.textContent=isPwd?'Gizle':'Göster'; });
-    // Giriş formu: sayfayı yenileme, girişli işaretle ve profile git
-  // prevent submit (demo)
     $('#loginForm').addEventListener('submit',e=>{ e.preventDefault(); $('#lmsg').textContent='(Demo) Giriş tetiklendi'; });
     $('#signupForm').addEventListener('submit',e=>{ e.preventDefault();
       const pass=$('#spass')?$('#spass').value.trim():''; const pass2=$('#spass2')?$('#spass2').value.trim():'';
@@ -564,101 +446,138 @@
       $('#smsg').innerHTML='<span class="ok">Kayıt alındı! Lütfen <b>e‑posta</b> kutunu kontrol et. Gelen kutusunda yoksa <b>spam/önemsiz</b> klasörünü de kontrol et. Hesabını aktifleştirmek için e‑postadaki <b>doğrulama</b> bağlantısına tıkla.</span>';
     });
   }
-    
+
   function boot(){
     try{
-      setDir();
-      initLangSelect();
-      applyLang();
-      renderCats();
-      startCardGlow(); // 3 sn
-      renderSlogans();
-      renderShowcase();
-      renderListings();
-      startListingRotation();
-      renderLegal();
-      bindAuthPanel();
-      const y=$('#yr'); if(y) y.textContent=new Date().getFullYear();
+      setDir(); initLangSelect(); applyLang(); renderCats(); startCardGlow(); renderSlogans(); renderListings(); startListingRotation(); renderLegal(); bindAuthPanel(); $('#yr').textContent=new Date().getFullYear();
     }catch(err){ console.error('Init error', err); }
   }
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', boot);
-    // Ekran boyutu değişince mobil renk davranışını yeniden uygula
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', boot);
     window.addEventListener('resize', ()=>{ clearTimeout(window.__catGlowRT); window.__catGlowRT=setTimeout(()=>{ startCardGlow(); },200); });
   } else { boot(); }
+  </script>
 
-  // === Bottom bar & chat & premium helpers (frameworksız) ===
-  const fab = document.getElementById('fabChat');
-  const panel = document.getElementById('chatPanel');
-  const chatClose = document.getElementById('chatClose');
-  function toggleChat(show){ if(!panel) return; panel.hidden = (show===undefined) ? !panel.hidden : !show ? true : false; }
-  if(fab) fab.addEventListener('click', ()=> toggleChat(true));
-  if(chatClose) chatClose.addEventListener('click', ()=> toggleChat(false));
+  <!-- PROFIL AKIŞI: hash #profile -> modal aç, scroll yapma -->
+  <script>
+    (function(){
+      function openProfile(){
+        const bd  = document.getElementById('backdrop');
+        const box = document.getElementById('authBox');
+        if (bd)  bd.style.display = 'block';
+        if (box){
+          box.style.display = 'block';
+          box.classList.add('center');
+          box.setAttribute('aria-hidden','false');
+        }
+      }
 
-  // Premium modal aç/kapat
-  const premiumBtn = document.getElementById('btnPremium');
-  const premiumModal = document.getElementById('premiumModal');
-  const closePremium = document.getElementById('closePremium');
-  const backdrop = document.getElementById('backdrop');
-  function openPremium(){ if(backdrop) backdrop.style.display='block'; if(premiumModal){ premiumModal.style.display='block'; premiumModal.setAttribute('aria-hidden','false'); premiumModal.classList.add('center'); } }
-  function closePremiumFn(){ if(premiumModal){ premiumModal.style.display='none'; premiumModal.classList.remove('center'); premiumModal.setAttribute('aria-hidden','true'); } if(backdrop) backdrop.style.display='none'; }
-  if(premiumBtn) premiumBtn.addEventListener('click', (e)=>{ e.preventDefault(); openPremium(); });
-  if(closePremium) closePremium.addEventListener('click', closePremiumFn);
-  if(backdrop) backdrop.addEventListener('click', ()=>{ if(premiumModal && premiumModal.style.display==='block') closePremiumFn(); });
-  const openChatFromPremium = document.getElementById('openChatFromPremium');
-  if(openChatFromPremium){ openChatFromPremium.addEventListener('click', ()=>{ closePremiumFn(); toggleChat(true); }); }
+      // Sayfa hash ile açılırsa
+      window.addEventListener('load', function(){
+        if (location.hash === '#profile'){
+          window.scrollTo(0,0);
+          openProfile();
+        }
+      });
 
-  // Copy helpers + toast
-  function showToast(msg='Kopyalandı'){ const t=document.getElementById('toast'); if(!t) return; t.textContent=msg; t.hidden=false; clearTimeout(window.__toastT); window.__toastT=setTimeout(()=>{ t.hidden=true; }, 1600); }
-  function copyText(txt){ if(!txt) return; if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(()=>showToast('Kopyalandı')).catch(()=>showToast('Kopyalanamadı')); } else { const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); showToast('Kopyalandı'); }catch(_){ showToast('Kopyalanamadı'); } finally{ document.body.removeChild(ta); } } }
-  $$('.btn.copy').forEach(b=> b.addEventListener('click', ()=> copyText(b.getAttribute('data-copy')) ));
+      // Sayfa içindeki her türlü #profile linkini yakala
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a[href$="#profile"], a[href^="/home.html#profile"], a[href^="#profile"]');
+        if(!a) return;
+        e.preventDefault();
+        // URL'de #profile görünsün ama scroll olmasın
+        const path = a.pathname || location.pathname;
+        history.replaceState(null, '', path + '#profile');
+        window.scrollTo(0,0);
+        openProfile();
+      }, { passive:false });
+    })();
+  </script>
 
-  // Logout: auth ekranına yönlendir
-  const btnLogout = document.getElementById('btnLogout');
-  if(btnLogout){ btnLogout.addEventListener('click', ()=>{ try{ /* Firebase mevcutsa signOut burada olabilir */ }catch(_){} location.href='/docs/auth.html'; }); }
-  
-  <!-- Profil butonu: girişliysen sadece URL'i #profile yap; girişsizsen paneli aç -->
->
-// --- PROFIL AKIŞI ---
+  <!-- Firebase (opsiyonel gerçek giriş akışı) -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
+    import { getAuth, setPersistence, browserLocalPersistence, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js';
 
-function __openProfile(){
-  const bd  = document.getElementById('backdrop');
-  const box = document.getElementById('authBox');
-  if (bd)  bd.style.display = 'block';
-  if (box){
-    box.style.display = 'block';
-    box.classList.add('center');
-    box.setAttribute('aria-hidden','false');
-  }
-}
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCd9GjP6CDA8i4XByhXDHyESy-g_DHVwvQ',
+      authDomain: 'ureteneller-ecaac.firebaseapp.com',
+      projectId: 'ureteneller-ecaac',
+      storageBucket: 'ureteneller-ecaac.firebasestorage.app',
+      messagingSenderId: '368042877151',
+      appId: '1:368042877151:web:ee0879fc4717928079c96a',
+      measurementId: 'G-BJHKN8V4RQ'
+    };
 
-// Sayfa #profile ile gelmiş VE girişsizsen panel otomatik açılsın
-window.addEventListener('load', function(){
-  if (location.hash === '#profile' && !localStorage.getItem('ue_uid')) {
-    __openProfile();
-  }
-});
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    setPersistence(auth, browserLocalPersistence).catch(()=>{});
 
-// Profil butonu: girişliysen panel açma; girişsizsen panel aç
-const __btnProf = document.getElementById('btnProfile');
-if (__btnProf){
-  __btnProf.addEventListener('click', function(e){
-    e.preventDefault();
-    if (localStorage.getItem('ue_uid')) {
-      // Girişli: yalnızca URL #profile; panel kapalı kalsın
-      location.href = '/home.html#profile';
-      const box = document.getElementById('authBox');
-      const bd  = document.getElementById('backdrop');
-      if (box){ box.style.display='none'; box.setAttribute('aria-hidden','true'); box.classList.remove('center'); }
-      if (bd){ bd.style.display='none'; }
-    } else {
-      // Girişsiz: URL + panel aç
-      location.hash = '#profile';
-      __openProfile();
-    }
-  });
-}
-</script>
-  
-  </body>
+    const $=(s)=>document.querySelector(s);
+    const HOME = '/home.html';
+
+    const provider = new GoogleAuthProvider();
+
+    const gLoginBtn=document.getElementById('gLogin');
+    if(gLoginBtn) gLoginBtn.addEventListener('click', async ()=>{
+      const out = document.getElementById('lmsg');
+      try{ await signInWithPopup(auth, provider); location.href = HOME; }
+      catch(err){ if(out) out.textContent = err?.code || 'Hata'; }
+    });
+
+    const gSignupBtn=document.getElementById('gSignup');
+    if(gSignupBtn) gSignupBtn.addEventListener('click', async ()=>{
+      const out = document.getElementById('smsg');
+      try{ await signInWithPopup(auth, provider); location.href = HOME; }
+      catch(err){ if(out) out.textContent = err?.code || 'Hata'; }
+    });
+
+    const loginForm=document.getElementById('loginForm');
+    if(loginForm) loginForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('lemail')?.value?.trim();
+      const pass = document.getElementById('lpass')?.value;
+      const out = document.getElementById('lmsg');
+      try{
+        const res = await signInWithEmailAndPassword(auth, email, pass);
+        const user = res.user;
+        if(!user.emailVerified){
+          await sendEmailVerification(user);
+          if(out) out.innerHTML = 'E‑posta doğrulaması gönderildi. Lütfen e‑postayı onaylayın ve tekrar giriş yapın.';
+          await signOut(auth);
+          return;
+        }
+        location.href = HOME;
+      }catch(err){ if(out) out.textContent = err?.code || 'Hata'; }
+    });
+
+    const signupForm=document.getElementById('signupForm');
+    if(signupForm) signupForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('semail')?.value?.trim();
+      const pass  = document.getElementById('spass')?.value;
+      const pass2 = document.getElementById('spass2')?.value;
+      const name = document.getElementById('sname')?.value?.trim();
+      const surname = document.getElementById('ssurname')?.value?.trim();
+      const username = document.getElementById('suser')?.value?.trim();
+      const out = document.getElementById('smsg');
+      if(pass!==pass2){ if(out) out.textContent='Şifreler eşleşmiyor.'; return; }
+      try{
+        const { user } = await createUserWithEmailAndPassword(auth, email, pass);
+        const displayName = (name && surname) ? (name+' '+surname) : (username || '');
+        if(displayName){ try{ await updateProfile(user, { displayName }); }catch(_){} }
+        await sendEmailVerification(user);
+        if(out) out.innerHTML = 'Kayıt oluşturuldu. Lütfen e‑postadaki doğrulama bağlantısını tıklayın, sonra giriş yapın.';
+      }catch(err){ if(out) out.textContent = err?.code || 'Hata'; }
+    });
+
+    const forgotBtn=document.getElementById('forgotBtn');
+    if(forgotBtn) forgotBtn.addEventListener('click', async ()=>{
+      const email = document.getElementById('lemail')?.value?.trim() || document.getElementById('semail')?.value?.trim();
+      const out = document.getElementById('lmsg');
+      if(!email){ if(out) out.textContent='Lütfen e‑posta adresini yaz.'; return; }
+      try{ await sendPasswordResetEmail(auth, email); if(out) out.textContent='Şifre sıfırlama e‑postası gönderildi.'; }
+      catch(err){ if(out) out.textContent = err?.code || 'Hata'; }
+    });
+  </script>
+</body>
 </html>
